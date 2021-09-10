@@ -1,8 +1,8 @@
 import { Container } from "@material-ui/core";
 import React from "react";
 
-function Home() {
+function Splash() {
 	return <Container>...Loading</Container>;
 }
 
-export default Home;
+export default Splash;
