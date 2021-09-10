@@ -6,7 +6,7 @@ import React from "react";
 const useStyles = makeStyles({
 	root: {
 		minWidth: 500,
-		minHeight: 500,
+		minHeight: 200,
 	},
 });
 

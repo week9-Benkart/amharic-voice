@@ -12,7 +12,7 @@ function _fab({ children }) {
 	const classes = useStyles();
 
 	return (
-    <Fab color="primary" aria-label="record" className={classes.root}>
+    <Fab color="accent" aria-label="record" className={classes.root}>
       {children}
     </Fab>
 	);
