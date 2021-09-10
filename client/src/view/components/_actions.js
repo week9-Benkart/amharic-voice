@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { makeStyles } from '@material-ui/core/styles';
-import {Fab} from './';
+import {Fab} from '.';
 import {Mic, MicOff, ArrowForwardIos, Replay} from '@material-ui/icons'
 import AudioPlayer from 'material-ui-audio-player';
 

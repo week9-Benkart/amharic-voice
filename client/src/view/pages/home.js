@@ -29,7 +29,7 @@ function Home() {
 
   const record = () => {
     console.log("Record");
-    sendAudio()
+    // sendAudio()
 		startRecording()
   }
 	const stop = () => {
