@@ -45,7 +45,7 @@ function Home() {
     <Container component="main" maxWidth="xs">      
       <div className={classes.paper}>
         <Title>
-          Welcome
+          ለቋንቋው እድገት ላደረጉት ድጋፍ ምስጋናችን ከልብ ነው
         </Title>
         <Card>
 					<Typography className={classes.transcription} color="textSecondary" align="center" gutterBottom>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import {Fab} from './';
 import {Mic, MicOff, ArrowForwardIos, Replay} from '@material-ui/icons'
-
+import AudioPlayer from 'material-ui-audio-player';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,8 +18,11 @@ const useStyles = makeStyles((theme) => ({
   },
   audio: {
     display: 'flex',
+    width: 500,
     alignItems: "center",
-    margin: 2
+    marginTop: 24,
+    marginBottom: 24,
+    marginLeft: 24
   },
 }));
 
@@ -72,7 +75,12 @@ export default function Actions({ audioURL, recordHandler, stopHandler, reloadHa
   return (
     <div>
       <div className={classes.audio}>
-        <audio src={audioURL} controls />
+        <AudioPlayer 
+          elevation={1}
+          width="100%"
+          variation="default"
+          spacing={3}
+          src={audioURL} />
       </div>
       <div className={classes.root}>
         <Fab>

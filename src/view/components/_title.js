@@ -4,7 +4,13 @@ import React from "react";
 
 const useStyles = makeStyles({
 	root: {
+		display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
 		color: "purple",
+		fontWeight: 400,
+		marginBottom: 16,
+		minWidth: 500,
 	},
 });
 
@@ -12,7 +18,7 @@ function _title({ children }) {
 	const classes = useStyles();
 
 	return (
-		<Typography component="h1" variant="h5" className={classes.root}>
+		<Typography component="h2" variant="h6" className={classes.root}>
 			{children}
 		</Typography>
 	);
