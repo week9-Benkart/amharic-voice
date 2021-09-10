@@ -3,8 +3,8 @@ import Fab from '@material-ui/core/Fab';
 import React from "react";
 
 const useStyles = makeStyles({
-	root: {
-		color: "purple",
+	fab: {
+		color: "#8e24aa",
 	},
 });
 
@@ -12,9 +12,12 @@ function _fab({ children }) {
 	const classes = useStyles();
 
 	return (
-    <Fab color="accent" aria-label="record" className={classes.root}>
-      {children}
-    </Fab>
+		<div className={classes.fab}>
+			<Fab color= "inherit" aria-label="record">
+      	{children}
+    	</Fab>
+		</div>
+
 	);
 }
 
