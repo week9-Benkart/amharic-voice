@@ -1,23 +1,25 @@
 const bodyParser = require("body-parser");
 const express = require("express");
 const routes = require("./routes");
+const cors = require("cors");
 
 const app = express();
 
 port = process.env.PORT || 8000;
 
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000",
+    ],
+    exposedHeaders: ["auth-token"],
+  }));
+
 app.use("/api", routes);
 
 app.use(bodyParser.json());
 
-app.use(
-  cors({
-    origin: [
-      "http://127.0.0.1:8000",
-    ],
-    exposedHeaders: ["auth-token"],
-  })
-);
+
 
 app.get("/test", (req, res) => {
   res.json("working");

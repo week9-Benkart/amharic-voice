@@ -10,8 +10,8 @@ export const kafkaContext = createContext();
 
 function KafkaProvider({ children }) {
   
-	const receiveTranscription = async () => {
-    appAxios.get("/api/transcription").then((res) => {
+	const receiveTranscription = () => {
+    appAxios.get("api/transcription").then((res) => {
         if (res.status === 200) {
           return res.data;
         }
@@ -22,7 +22,7 @@ function KafkaProvider({ children }) {
       });
   }
 
-  const sendAudio = async () => {
+  const sendAudio = () => {
     appAxios.post(`/api/audio`, {data: "Works"})
       .then((res) => {
       })

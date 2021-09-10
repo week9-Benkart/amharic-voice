@@ -1,12 +1,10 @@
 import { Container } from "@material-ui/core";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import {Card, Title, Actions} from "../components"
 import Typography from '@material-ui/core/Typography';
 import useRecorder from "../../core/useRecorder";
 import useKafka from "../../core/useKafka";
-
-let x = "አገራችን ከአፍሪካም ሆነ ከሌሎች የአለም አገራት ጋር ያላትን አለም አቀፋዊ ግንኙነት ወደ ላቀ ደረጃ ያሸጋገረ ሆኗል በአገር ውስጥ አራት አለም ጀልባያውም የወረቀት"
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -24,6 +22,8 @@ const useStyles = makeStyles((theme) => ({
 function Home() {
 	const classes = useStyles();
   const [receiveTranscription, sendAudio] = useKafka();
+  const [transcription, setTranscription] = useState("");
+  const [audio, setAudio] = useState("")
 
   let [audioURL, isRecording, startRecording, stopRecording] = useRecorder();
 
@@ -42,8 +42,19 @@ function Home() {
 	const next = () => {
     console.log("next");
 		console.log(audioURL);
+    const trans = receiveTranscription()
+    console.log(trans);
+    setTranscription(trans)
   }
 	console.log(isRecording);
+
+  useEffect(() => {
+    console.log("trans");
+
+    const trans = receiveTranscription()
+    console.log(trans);
+     setTranscription(trans)
+  }, [])
 
 
 	return (
@@ -54,7 +65,7 @@ function Home() {
         </Title>
         <Card>
 					<Typography className={classes.transcription} color="textSecondary" align="center" gutterBottom>
-          	{x}
+          	{transcription}
         	</Typography>
 				</Card>
 
