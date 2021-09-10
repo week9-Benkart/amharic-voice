@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import {Card, Title, Actions} from "../components"
 import Typography from '@material-ui/core/Typography';
 import useRecorder from "../../core/useRecorder";
+import useKafka from "../../core/useKafka";
 
 let x = "አገራችን ከአፍሪካም ሆነ ከሌሎች የአለም አገራት ጋር ያላትን አለም አቀፋዊ ግንኙነት ወደ ላቀ ደረጃ ያሸጋገረ ሆኗል በአገር ውስጥ አራት አለም ጀልባያውም የወረቀት"
 
@@ -13,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    backgroundImage: 'linear-gradient(0deg,var(--white) 20%,var(--desert-storm))'
   },
 	transcription: {
     fontSize: 24,
@@ -21,10 +23,13 @@ const useStyles = makeStyles((theme) => ({
 
 function Home() {
 	const classes = useStyles();
+  const [receiveTranscription, sendAudio] = useKafka();
+
   let [audioURL, isRecording, startRecording, stopRecording] = useRecorder();
 
   const record = () => {
     console.log("Record");
+    sendAudio()
 		startRecording()
   }
 	const stop = () => {
