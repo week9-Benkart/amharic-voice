@@ -4,7 +4,8 @@ import React from "react";
 
 const useStyles = makeStyles({
 	fab: {
-		color: "#8e24aa",
+		backgroundColor: "#ffffff",
+		color: "#002884"
 	},
 });
 

@@ -7,7 +7,7 @@ const useStyles = makeStyles({
 		display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-		color: "purple",
+		color: "#002884",
 		fontWeight: 400,
 		marginBottom: 16,
 		minWidth: 500,
