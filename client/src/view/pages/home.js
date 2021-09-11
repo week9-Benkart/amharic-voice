@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import {Card, Title, Actions} from "../components"
 import Typography from '@material-ui/core/Typography';
 import useRecorder from "../../core/useRecorder";
-import useKafka from "../../core/useKafka";
+import useServer from "../../core/useServer";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -21,8 +21,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Home() {
 	const classes = useStyles();
-  const [receiveTranscription, sendAudio] = useKafka();
-  const [transcription, setTranscription] = useState("");
+  const [transcription, receiveTranscription, sendAudio] = useServer();
   const [audio, setAudio] = useState("")
 
   let [audioURL, isRecording, startRecording, stopRecording] = useRecorder();
@@ -42,19 +41,14 @@ function Home() {
 	const next = () => {
     console.log("next");
 		console.log(audioURL);
-    const trans = receiveTranscription()
-    console.log(trans);
-    setTranscription(trans)
+    sendAudio(audioURL);
+    receiveTranscription()
   }
 	console.log(isRecording);
 
   useEffect(() => {
-    console.log("trans");
-
-    const trans = receiveTranscription()
-    console.log(trans);
-     setTranscription(trans)
-  }, [])
+    receiveTranscription()
+  }, [receiveTranscription])
 
 
 	return (

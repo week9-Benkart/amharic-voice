@@ -24,12 +24,46 @@ function ServerProvider({ children }) {
       });
   }
 
-  const sendAudio = () => {
-    appAxios.post(`/api/audio`, {data: "Works"})
-      .then((res) => {
-      })
-      .catch((err) => {});
+  const sendAudio = async (audioURL) => {
+    console.log("audioURL: ", audioURL)
+
+    axios({
+        method: 'get',
+        url: audioURL, 
+        responseType: 'blob'
+    }).then(function(response){
+        console.log("response: ", response.data)
+        sendWavToServer(response.data);
+
+        // console.log("response: ", response.data)
+        // let x = URL.createObjectURL(response.data)
+        // console.log("audioURL: ", x)
+        //  var reader = new FileReader();
+        //  reader.readAsDataURL(response.data); 
+        //  reader.onloadend = function() {
+        //     var blob = reader.result;
+        //     console.log("response: ", blob)
+        //     let x = URL.createObjectURL(blob)
+        //     console.log("audioURL: ", x)
+        //  }
+    })
   };
+
+
+function sendWavToServer(wavFile) {
+  console.log("wavFile: ", wavFile)
+
+  var formData = new FormData();
+  formData.append("wavFile", wavFile); 
+  console.log("formData: ", formData)
+  appAxios.post(`/api/audio`, formData)
+      .then((res) => {
+        console.log("successfully sent audio: ", res)
+      })
+      .catch((err) => {
+         console.log("error sending audio: ", err)
+      });
+}
 
 	const value = [transcription, receiveTranscription, sendAudio];
 

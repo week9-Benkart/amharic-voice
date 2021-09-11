@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import KafkaProvider from './core/kafkaContext'
+import ServerProvider from './core/serverContext'
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <KafkaProvider>
+    <ServerProvider>
       <App />
-    </KafkaProvider>
+    </ServerProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
