@@ -4,10 +4,6 @@ const { responseFailure, responseSuccess } = require("./response");
 
 
 router.post("/audio", async (req, res) => {
-  const { error } = userPostValidation(req.body);
-  if (error) {
-    return res.status(400).json(responseFailure(error.details[0].message, 400));
-  }
   console.log(req.body);
 });
 
