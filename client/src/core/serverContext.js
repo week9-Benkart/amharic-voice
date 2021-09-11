@@ -1,4 +1,4 @@
-import React, { createContext } from "react";
+import React, { createContext, useState } from "react";
 import axios from 'axios';
 
 const appAxios = axios.create({
@@ -6,16 +6,18 @@ const appAxios = axios.create({
   headers: { "Access-Control-Allow-Origin": "*" },
 });
 
-export const kafkaContext = createContext();
+export const ServerContext = createContext();
 
-function KafkaProvider({ children }) {
+function ServerProvider({ children }) {
+  const [transcription, setTranscription] = useState('')
   
 	const receiveTranscription = () => {
     appAxios.get("api/transcription").then((res) => {
         if (res.status === 200) {
-          return res.data;
+          console.log("res.data.data: ", res.data.data);
+          setTranscription(res.data.data)
+          return;
         }
-        //TODO: handle couldn't fetch data
       })
       .catch((err) => {
         console.log("Error")
@@ -29,9 +31,9 @@ function KafkaProvider({ children }) {
       .catch((err) => {});
   };
 
-	const value = [receiveTranscription, sendAudio];
+	const value = [transcription, receiveTranscription, sendAudio];
 
-	return <kafkaContext.Provider value={value}>{children}</kafkaContext.Provider>;
+	return <ServerContext.Provider value={value}>{children}</ServerContext.Provider>;
 }
 
-export default KafkaProvider;
+export default ServerProvider;

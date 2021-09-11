@@ -23,7 +23,13 @@ const useRecorder = () => {
 
     // Obtain the audio when ready.
     const handleData = e => {
-      setAudioURL(URL.createObjectURL(e.data));
+
+      var chunks = [];
+      chunks.push(e.data);
+      var blob = new Blob(chunks, { 'type' : 'audio/wav; codecs=opus' });
+      console.log("data: ", blob)
+      console.log("data type: ", typeof e)
+      setAudioURL(URL.createObjectURL(blob));
     };
 
     recorder.addEventListener("dataavailable", handleData);
