@@ -15,10 +15,12 @@ app.use(
     exposedHeaders: ["auth-token"],
   }));
 
+app.use(express.json());
+app.use(express.urlencoded({
+  extended: true
+}));
+
 app.use("/api", routes);
-
-app.use(bodyParser.json());
-
 
 
 app.get("/test", (req, res) => {
