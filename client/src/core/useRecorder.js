@@ -27,10 +27,6 @@ const useRecorder = () => {
       var chunks = [];
       chunks.push(e.data);
       var blob = new Blob(chunks, { 'type' : 'audio/wav; codecs=opus' });
-      var wavefilefromblob = new File([blob], 'filename.wav');
-
-      console.log("data: ", blob)
-      console.log("data type: ", typeof e)
       setAudioURL(URL.createObjectURL(blob));
     };
 

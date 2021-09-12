@@ -49,22 +49,40 @@ function ServerProvider({ children }) {
     })
   };
 
+  function sendWavToServer(wavFile) {
+    console.log("wavFile: ", wavFile)
+    var formData = new FormData(); // Currently empty
+    formData.append('id', '12345');
+    formData.append("wavFile", wavFile, "node_icon.wav"); 
+    for (var key of formData.entries()) {
+      console.log(key[0] + ', ' + key[1]);
+    }
+    // axios.post(`http://127.0.0.1:8000/api/audio`, formData,  {
+    //   headers: {'Content-Type': 'multipart/form-data'},
+    //   timeout: 30000,
+    // })
+    // .then((res) => {
+    //       console.log("successfully sent audio: ", res)
+    //     })
+    //     .catch((err) => {
+    //       console.log("error sending audio: ", err)
+    //     });
 
-function sendWavToServer(wavFile) {
-  console.log("wavFile: ", wavFile)
-
-  var formData = new FormData();
-  formData.append("wavFile", wavFile); 
-  console.log("formData: ", formData)
-  appAxios.post(`/api/audio`, formData)
-      .then((res) => {
-        console.log("successfully sent audio: ", res)
+    axios({
+      method: 'post',
+      url: 'http://127.0.0.1:8000/api/audio',
+      data: formData,
+      headers: {'Content-Type': 'multipart/form-data' }
       })
-      .catch((err) => {
-         console.log("error sending audio: ", err)
+      .then(function (response) {
+          //handle success
+          console.log(response);
+      })
+      .catch(function (response) {
+          //handle error
+          console.log(response);
       });
-}
-
+    }
 	const value = [transcription, receiveTranscription, sendAudio];
 
 	return <ServerContext.Provider value={value}>{children}</ServerContext.Provider>;
