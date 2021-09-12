@@ -3,17 +3,23 @@ const router = express.Router();
 const { responseFailure, responseSuccess } = require("./response");
 var multer = require('multer');
 
-// router.post("/audio", async (req, res) => {
-//   console.log(req.body);
-// });
+var storage = multer.diskStorage({   
+   destination: function(req, file, cb) { 
+      cb(null, './uploads');    
+   }, 
+   filename: function (req, file, cb) { 
+      cb(null , file.originalname);   
+   }
+});
 
-const upload = multer({dest:'uploads/'}).single("wavFile");
+var upload = multer({ storage: storage }).single("wavFile");
+
 router.post("/audio", (req, res) => {
    upload(req, res, (err) => {
     if(err) {
-      res.status(400).send("Something went wrong!");
+      return res.json(responseFailure("Audio have not been received", 400));
     }
-    res.send(req.file);
+    return res.json(responseSuccess('Data Received'));
   });
 });
 
