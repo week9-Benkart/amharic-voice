@@ -2,7 +2,7 @@ import React, { createContext, useState } from "react";
 import axios from 'axios';
 
 const appAxios = axios.create({
-  baseURL: "http://127.0.0.1:8000",
+  baseURL: "http://127.0.0.1:5000",
   headers: { "Access-Control-Allow-Origin": "*" },
 });
 
@@ -12,10 +12,10 @@ function ServerProvider({ children }) {
   const [transcription, setTranscription] = useState('')
   
 	const receiveTranscription = () => {
-    appAxios.get("api/transcription").then((res) => {
+    appAxios.get("/api").then((res) => {
         if (res.status === 200) {
-          console.log("res.data.data: ", res.data.data);
-          setTranscription(res.data.data)
+          console.log("res: ", res.data);
+          setTranscription(res.data)
           return;
         }
       })
@@ -70,7 +70,7 @@ function ServerProvider({ children }) {
 
     axios({
       method: 'post',
-      url: 'http://127.0.0.1:8000/api/audio',
+      url: 'http://127.0.0.1:5000/api',
       data: formData,
       headers: {'Content-Type': 'multipart/form-data' }
       })
