@@ -1,8 +1,6 @@
-const bodyParser = require("body-parser");
 const express = require("express");
 const routes = require("./routes");
 const cors = require("cors");
-var multer = require('multer');
 const app = express();
 
 port = process.env.PORT || 8000;
