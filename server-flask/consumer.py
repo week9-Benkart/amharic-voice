@@ -19,7 +19,7 @@ class Consumer:
         consumer = KafkaConsumer( self.topic,
                                   bootstrap_servers=[self.bootstrap],
                                   auto_offset_reset='earliest',
-                                  group_id='benkart-group',
+                                  group_id='benkart-group3',
                                   )
         messages = consumer.poll(timeout_ms=1000, max_records=10)
         if(messages=={}):
