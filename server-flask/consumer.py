@@ -7,7 +7,7 @@ import time
 class Consumer:
     """ Class for Consumer"""
 
-    def __init__(self, bootstrap='b-1.demo-cluster-1.9q7lp7.c1.kafka.eu-west-1.amazonaws.com:9092', topic='example_topic_group2', file_type="text"):
+    def __init__(self, bootstrap='b-1.demo-cluster-1.9q7lp7.c1.kafka.eu-west-1.amazonaws.com:9092', topic='Benkart_Benkart_Text_Topic2', file_type="text"):
         """ Initialize consumer with the given bootstrapserver"""
         self.bootstrap = bootstrap
         self.topic = topic
@@ -19,7 +19,7 @@ class Consumer:
         consumer = KafkaConsumer( self.topic,
                                   bootstrap_servers=[self.bootstrap],
                                   auto_offset_reset='earliest',
-                                  group_id='benkart-group3',
+                                  group_id='benkart-group2v',
                                   )
         messages = consumer.poll(timeout_ms=1000, max_records=10)
         if(messages=={}):
@@ -36,6 +36,9 @@ class Consumer:
     def get_transcription(self):
       if(len(self.trans)==0):
         self.get_transcription_from_kafka()
+      if(len(self.trans)==0): 
+        return 'ለራስ ሲባል ሌላውን'
+      print(len(self.trans))
       text = self.trans.pop()
       return text
 

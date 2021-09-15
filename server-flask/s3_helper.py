@@ -9,7 +9,7 @@ class S3Helper:
 
     def __init__(self):
         self.client_id='tests_id'
-        self.bucket = 'benkart-raw-audio-bucket'
+        self.bucket = 'benkart-raw-audio-bucket2'
         
     def upload_file(self, file_name: str, object_name=None):
         """Upload a file to an S3 bucket
@@ -19,6 +19,7 @@ class S3Helper:
         """
 
         # If S3 object_name was not specified, use file_name
+        file_name = file_name + '.wav'
         if object_name is None:
             object_name = os.path.basename(file_name)
 

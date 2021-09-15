@@ -17,6 +17,7 @@ class Producer:
         self.topic = topic
         self.producer = KafkaProducer( bootstrap_servers=[self.bootstrap] )
 
-    def send_audio_metadata(self, value):
-        self.producer.send(self.topic , value="Testing String nnnn".encode())
+    def send_audio_metadata(self, message):
+
+        self.producer.send(self.topic , value=str(message).encode())
         self.producer.flush()
